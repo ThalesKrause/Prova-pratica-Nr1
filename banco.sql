@@ -1,10 +1,3 @@
--- --------------------------------------------------------
--- Servidor:                     127.0.0.1
--- Versão do servidor:           10.4.32-MariaDB - mariadb.org binary distribution
--- OS do Servidor:               Win64
--- HeidiSQL Versão:              12.8.0.6908
--- --------------------------------------------------------
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
@@ -15,25 +8,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
+
 -- Copiando estrutura do banco de dados para empresa
+
 CREATE DATABASE IF NOT EXISTS `empresa` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `empresa`;
 
--- Copiando estrutura para tabela empresa.funcionario
+-- Copiando estrutura para tabela funcionario
+
 CREATE TABLE IF NOT EXISTS `Funcionario` (
   `id` int(11) NOT NULL,
   `matricula` varchar(10) NOT NULL,
   `departamento` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `matricula` (`matricula`),
-  CONSTRAINT `funcionario_ibfk_1` FOREIGN KEY (`id`) REFERENCES `pessoa` (`id`)
+  CONSTRAINT `funcionario_ibfk_1` FOREIGN KEY (`id`) REFERENCES `Pessoa` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Copiando dados para a tabela empresa.funcionario: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela empresa.funcionario
+
 INSERT INTO `funcionario` (`id`, `matricula`, `departamento`) VALUES
 	(8, 'F001', 'TI');
 
--- Copiando estrutura para tabela empresa.pessoa
+-- Copiando estrutura para tabela pessoa
+
 CREATE TABLE IF NOT EXISTS `Pessoa` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
@@ -41,11 +39,13 @@ CREATE TABLE IF NOT EXISTS `Pessoa` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Copiando dados para a tabela empresa.pessoa: ~1 rows (aproximadamente)
-INSERT INTO `pessoa` (`id`, `nome`, `email`) VALUES
-	(8, 'João da Silva', 'joao@email.com');
+-- Copiando dados para a tabela pessoa
 
--- Copiando estrutura para tabela empresa.projeto
+INSERT INTO `Pessoa` (`id`, `nome`, `email`) VALUES
+	(8, 'João da Silva', 'joao@example.com');
+
+-- Copiando estrutura para tabela projeto
+
 CREATE TABLE IF NOT EXISTS `Projeto` (
   `id_projeto` int(11) NOT NULL AUTO_INCREMENT,
   `nome_projeto` varchar(100) NOT NULL,
@@ -56,9 +56,11 @@ CREATE TABLE IF NOT EXISTS `Projeto` (
   CONSTRAINT `projeto_ibfk_1` FOREIGN KEY (`idFuncionario`) REFERENCES `Funcionario` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Copiando dados para a tabela empresa.projeto: ~0 rows (aproximadamente)
-INSERT INTO `projeto` (`id_projeto`, `nome_projeto`, `descricao`, `idFuncionario`) VALUES
+-- Copiando dados para a tabela projeto
+
+INSERT INTO `Projeto` (`id_projeto`, `nome_projeto`, `descricao`, `idFuncionario`) VALUES
 	(3, 'Sistema Interno', 'Desenvolvimento do novo sistema da empresa.', 8);
+
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
