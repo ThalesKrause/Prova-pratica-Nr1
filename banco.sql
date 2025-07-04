@@ -15,12 +15,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Copiando estrutura do banco de dados para cempresa
-CREATE DATABASE IF NOT EXISTS `cempresa` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-USE `cempresa`;
+-- Copiando estrutura do banco de dados para empresa
+CREATE DATABASE IF NOT EXISTS `empresa` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `empresa`;
 
--- Copiando estrutura para tabela cempresa.funcionario
-CREATE TABLE IF NOT EXISTS `funcionario` (
+-- Copiando estrutura para tabela empresa.funcionario
+CREATE TABLE IF NOT EXISTS `Funcionario` (
   `id` int(11) NOT NULL,
   `matricula` varchar(10) NOT NULL,
   `departamento` varchar(50) NOT NULL,
@@ -29,35 +29,35 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
   CONSTRAINT `funcionario_ibfk_1` FOREIGN KEY (`id`) REFERENCES `pessoa` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Copiando dados para a tabela cempresa.funcionario: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela empresa.funcionario: ~1 rows (aproximadamente)
 INSERT INTO `funcionario` (`id`, `matricula`, `departamento`) VALUES
 	(8, 'F001', 'TI');
 
--- Copiando estrutura para tabela cempresa.pessoa
-CREATE TABLE IF NOT EXISTS `pessoa` (
+-- Copiando estrutura para tabela empresa.pessoa
+CREATE TABLE IF NOT EXISTS `Pessoa` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Copiando dados para a tabela cempresa.pessoa: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela empresa.pessoa: ~1 rows (aproximadamente)
 INSERT INTO `pessoa` (`id`, `nome`, `email`) VALUES
 	(8, 'João da Silva', 'joao@email.com');
 
--- Copiando estrutura para tabela cempresa.projeto
-CREATE TABLE IF NOT EXISTS `projeto` (
+-- Copiando estrutura para tabela empresa.projeto
+CREATE TABLE IF NOT EXISTS `Projeto` (
   `id_projeto` int(11) NOT NULL AUTO_INCREMENT,
   `nome_projeto` varchar(100) NOT NULL,
   `descricao` text DEFAULT NULL,
-  `id_funcionario` int(11) NOT NULL,
+  `idFuncionario` int(11) NOT NULL,
   PRIMARY KEY (`id_projeto`),
-  KEY `id_funcionario` (`id_funcionario`),
-  CONSTRAINT `projeto_ibfk_1` FOREIGN KEY (`id_funcionario`) REFERENCES `funcionario` (`id`)
+  KEY `idFuncionario` (`idFuncionario`),
+  CONSTRAINT `projeto_ibfk_1` FOREIGN KEY (`idFuncionario`) REFERENCES `Funcionario` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Copiando dados para a tabela cempresa.projeto: ~0 rows (aproximadamente)
-INSERT INTO `projeto` (`id_projeto`, `nome_projeto`, `descricao`, `id_funcionario`) VALUES
+-- Copiando dados para a tabela empresa.projeto: ~0 rows (aproximadamente)
+INSERT INTO `projeto` (`id_projeto`, `nome_projeto`, `descricao`, `idFuncionario`) VALUES
 	(3, 'Sistema Interno', 'Desenvolvimento do novo sistema da empresa.', 8);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
